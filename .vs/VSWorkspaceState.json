@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\PasswordGenerator",
+    "\\PasswordGenerator\\PasswordGenerator"
   ],
+  "SelectedNode": "\\PasswordGenerator\\PasswordGenerator\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

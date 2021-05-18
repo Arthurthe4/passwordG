@@ -4,9 +4,11 @@ namespace PasswordGenerator
 {
     class Program
     {
+        static readonly Random Random = new Random();
+
         static void Main(string[] args)
         {
-            if(!IsValid(args))
+            if (!IsValid(args))
             {
                 ShowHelpText();
                 return;
@@ -14,6 +16,20 @@ namespace PasswordGenerator
             var length = Convert.ToInt32(args[0]);
             var options = args[1];
 
+            var pattern = options.PadRight(length, 'l');
+            var password = string.Empty;
+            while (pattern.Length > 0)
+            {
+                var randomIndex = Random.Next(0, pattern.Length - 1);
+                var category = pattern[randomIndex];
+
+                pattern = pattern.Remove(randomIndex, 1);
+                if (category == 'l') password += GetRandomLowerCaseLetter();
+                else if (category == 'L') password += GetRandomUpperCaseLetter();
+                else if (category == 'd') password += GetRandomDigit();
+                else password += GetRandomSpecialCharacter();
+            }
+            Console.WriteLine(password);
         }
 
         private static bool IsValid(string[] args)
